@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ledomone/Express_library#readme",
   "dependencies": {
+    "ejs": "^2.4.2",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
     "jade": "^1.11.0"

@@ -12,12 +12,12 @@
     </head>
     <body>
         <h1>
-            {{title}}
+            <%=title%> in EJS
         </h1>
         <ul>
-            {{#each list}}
-                <li class='vi'>{{this}}</li>
-            {{/each}}
+            <% for(var i=0; i<list.length; i++) {%>
+                <li class=<%='vi'+list[i]%>><%=list[i]%></li>
+            <%}%>
         </ul>
     </body>
 </html>
