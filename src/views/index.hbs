@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <!-- bower:css -->
+        <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css" />
+        <!-- endbower -->
+        <!-- inject:css -->
+        <link rel="stylesheet" href="/css/styles.css">
+        <!-- endinject -->
+        <!-- inject:js -->
+        <!-- endinject -->
+    </head>
+    <body>
+        <h1>
+            {{title}}
+        </h1>
+        <ul>
+            {{#each list}}
+                <li class='vi'>{{this}}</li>
+            {{/each}}
+        </ul>
+    </body>
+</html>
