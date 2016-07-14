@@ -2,8 +2,8 @@
 "use strict";
 
 var express = require('express');
-
 var bookRouter = express.Router();
+var sql = require('mssql'); // its that same like in app.js
 
 var router = function (nav) {
     var books = [
@@ -59,11 +59,16 @@ var router = function (nav) {
 
     bookRouter.route('/')
         .get(function (req, res) {
-            res.render('bookListView', {
-                title: 'Books',
-                nav: nav,
-                books: books
-            });
+            var request = new sql.Request();
+
+            request.query('select * from books',
+                function (err, recordset) { // recordset is already JSON formated
+                    res.render('bookListView', {
+                        title: 'Books',
+                        nav: nav,
+                        books: recordset
+                    });
+                });
         });
 
     bookRouter.route('/:id')

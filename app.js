@@ -4,6 +4,21 @@
 var express = require('express');
 
 var app = express();
+var sql = require('mssql');
+
+var config = {
+    user: 'books',
+    password: 'simplepassword',
+    server: 'fw398asldf.database.windows.net', // You can use 'localhost\\instance' to connect to named instance
+    database: 'Books',
+    options: {
+        encrypt: true // Use this if you're on Windows Azure
+    }
+};
+
+sql.connect(config, function(err) {
+    console.log(err);
+});
 
 var port = process.env.PORT || 5000;
 
