@@ -73,4 +73,14 @@ bookRouter.route('/')
         });
     });
 
+bookRouter.route('/:id')
+    .get(function (req, res) {
+        var id = req.params.id;
+        res.render('book', {
+            title: 'Hello from render',
+            nav: nav,
+            book: books[id]
+        });
+    });
+
 module.exports = bookRouter;
