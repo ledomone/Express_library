@@ -72,14 +72,25 @@ var router = function (nav) {
         });
 
     bookRouter.route('/:id')
-        .get(function (req, res) {
-            var id = req.params.id;
-            res.render('bookView', {
-                title: 'Single Book',
-                nav: nav,
-                book: books[id]
-            });
-        });
+     .get(function (req, res) {
+         var id = req.params.id;
+         var ps = new sql.PreparedStatement();
+         ps.input('id', sql.Int);
+         ps.prepare('select * from books where id = @id',
+             function (err) {
+                 ps.execute({
+                         id: req.params.id
+                     },
+                     function (err, recordset) {
+                         res.render('bookView', {
+                             title: 'Single Book',
+                             nav: nav,
+                             book: recordset[0]
+                         });
+                     });
+             });
+
+     });
 
     return bookRouter;
 };
