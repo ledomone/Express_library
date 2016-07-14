@@ -14,9 +14,20 @@ app.set('views', './src/views');
 
 app.set('view engine', 'ejs');
 
-bookRouter.route('/single')
+var nav = [{
+    Link: '/Books',
+    Text: 'Books'
+            }, {
+    Link: '/Authors',
+    Text: 'Authors'
+            }];
+
+bookRouter.route('/')
     .get(function (req, res) {
-        res.send('Hello Single Book');
+        res.render('books', {
+            title: 'Hello from render',
+            nav: nav
+        });
     });
 
 app.use('/Books', bookRouter);
@@ -24,19 +35,8 @@ app.use('/Books', bookRouter);
 app.get('/', function (req, res) {
     res.render('index', {
         title: 'Hello from render',
-        nav: [{
-                Link: '/Books',
-                Text: 'Books'
-            }
-                               , {
-                Link: '/Authors',
-                Text: 'Authors'
-            }]
+        nav: nav
     });
-});
-
-app.get('/books', function (req, res) {
-    res.send('Hello Books!');
 });
 
 app.listen(port, function (err) {
