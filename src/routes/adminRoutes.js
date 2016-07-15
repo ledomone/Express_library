@@ -2,10 +2,9 @@
 "use strict";
 
 var express = require('express');
-var bookRouter = express.Router();
+var adminRouter = express.Router();
 
 var router = function (nav) {
-
     var books = [
         {
             title: 'War and Peace',
@@ -57,26 +56,13 @@ var router = function (nav) {
 }
 ];
 
-    bookRouter.route('/')
+    adminRouter.route('/addBooks')
         .get(function (req, res) {
-            res.render('bookListView', {
-                title: 'Books',
-                nav: nav,
-                books: books
-            });
+            res.send('inserting books');
         });
 
-    bookRouter.route('/:id')
-        .get(function (req, res) {
-            var id = req.params.id;
-            res.render('bookView', {
-                title: 'Single Book',
-                nav: nav,
-                book: books[id]
-            });
-        });
-
-    return bookRouter;
+    return adminRouter;
 };
+
 
 module.exports = router;
