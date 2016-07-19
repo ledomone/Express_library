@@ -5,12 +5,18 @@ var express = require('express');
 var authRouter = express.Router();
 var mongodb = require('mongodb').MongoClient;
 
-var router = function(){
+var router = function () {
     authRouter.route('/signUp')
-        .post(function(req, res) {
+        .post(function (req, res) {
             console.log(req.body);
-    });
-    
+            req.login(req.body, function () {
+                res.redirect('/auth/profile');
+            });
+        });
+    authRouter.route('/profile')
+        .get(function (req, res) {
+            res.json(req.user); // req.user - passport let us know: this guy sign in and there is an information
+        });
     return authRouter;
 };
 

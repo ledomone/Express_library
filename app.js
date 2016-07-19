@@ -28,7 +28,11 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(session({secret: 'library'}));
+app.use(session({
+    secret: 'library',
+    resave: true,
+    saveUninitialized: true
+}));
 
 require('./src/config/passport')(app);
 
