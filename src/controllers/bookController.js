@@ -7,9 +7,9 @@ var objectId = require('mongodb').ObjectID;
 var bookController = function (bookService, nav) {
 
     var middleware = function (req, res, next) {
-        if (!req.user) {
-            res.redirect('/'); // if you are not logged in - go back to slash / ;-)
-        }
+//        if (!req.user) {
+//            res.redirect('/'); // if you are not logged in - go back to slash / ;-)
+//        }
         next();
     };
 
