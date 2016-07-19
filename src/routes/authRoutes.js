@@ -33,6 +33,12 @@ var router = function () {
             res.redirect('/auth/profile');
         });
     authRouter.route('/profile')
+        .all(function (req, res, next) {
+            if (!req.user) {
+                res.redirect('/'); // if you are not logged in - go back to slash / ;-)
+            }
+            next();
+        })
         .get(function (req, res) {
             res.json(req.user); // req.user - passport let us know: this guy sign in and there is an information
         });
