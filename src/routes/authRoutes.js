@@ -4,6 +4,7 @@
 var express = require('express');
 var authRouter = express.Router();
 var mongodb = require('mongodb').MongoClient;
+var passport = require('passport');
 
 var router = function () {
     authRouter.route('/signUp')
@@ -24,6 +25,12 @@ var router = function () {
                     });
                 });
             });
+        });
+    authRouter.route('/signIn')
+        .post(passport.authenticate('local', { // use local.strategy
+            failureRedirect: '/'
+        }), function (req, res) { //if success
+            res.redirect('/auth/profile');
         });
     authRouter.route('/profile')
         .get(function (req, res) {
