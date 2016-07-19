@@ -8,6 +8,13 @@ var objectId = require('mongodb').ObjectID;
 
 var router = function (nav) {
 
+    bookRouter.use(function (req, res, next) {
+        if (!req.user) {
+            res.redirect('/'); // if you are not logged in - go back to slash / ;-)
+        }
+        next();
+    });
+
     bookRouter.route('/')
         .get(function (req, res) {
 
